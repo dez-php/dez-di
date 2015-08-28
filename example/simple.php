@@ -7,4 +7,16 @@ include_once '../vendor/autoload.php';
 
 $di = new Dez\Di();
 
-die(var_dump( $di ));
+$di->set( 'component1', function() {
+    return new \stdClass;
+} );
+
+$di->set( 'component2', 'stdClass' );
+
+$di['component3']   = new stdClass();
+
+$di['component4']   = function() {
+    return new \stdClass;
+};
+
+die(var_dump( $di, $di['component2']->getName(), $di['component4']->getDefinition() ));

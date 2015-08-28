@@ -24,6 +24,15 @@
         protected $resolved = false;
 
         /**
+         * @param $name
+         * @param $definition
+         */
+        public function __construct( $name, $definition ) {
+            $this->name         = $name;
+            $this->definition   = $definition;
+        }
+
+        /**
          * @return mixed
          */
         public function getDefinition() {

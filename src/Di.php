@@ -14,11 +14,11 @@
         }
 
         public function get( $name ) {
-            return;
+            return $this->services[$name];
         }
 
         public function getService( $name ) {
-            return;
+            return $this->services[$name];
         }
 
         public function has( $name ) {
@@ -41,10 +41,8 @@
             return $this->services[$index];
         }
 
-        public function offsetSet( $index, $item ) {
-            ! $index
-                ? $this->services[]         = $item
-                : $this->services[$index]   = $item;
+        public function offsetSet( $name, $definition ) {
+            return $this->set( $name, $definition );
         }
 
         public function getIterator() {
