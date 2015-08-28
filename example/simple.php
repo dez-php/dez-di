@@ -7,16 +7,10 @@ include_once '../vendor/autoload.php';
 
 $di = new Dez\Di();
 
-$di->set( 'component1', function() {
+$di->set( 'connection', function() {
     return new \stdClass;
 } );
 
-$di->set( 'component2', 'stdClass' );
-
-$di['component3']   = new stdClass();
-
-$di['component4']   = function() {
-    return new \stdClass;
-};
-
-die(var_dump( $di, $di['component2']->getName(), $di['component4']->getDefinition() ));
+$di->get( 'connection', [
+    'host'  => '127.0.0.1'
+] );
