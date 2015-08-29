@@ -82,7 +82,7 @@
          * @return bool
          */
         public function has( $name ) {
-            return isset( $this[$name] );
+            return isset( $this->services[$name] );
         }
 
         /**

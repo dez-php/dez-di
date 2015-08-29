@@ -36,6 +36,8 @@ die(print_r( [
     $di->get( 'test2', [
         'param1'    => '123qwe',
         'param2'    => '321312'
-    ] )
+    ] ),
+
+    $di
 
 ], true ));
