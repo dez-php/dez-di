@@ -43,7 +43,7 @@
          * @param mixed $definition
          * @return static
          */
-        public function setDefinition($definition) {
+        public function setDefinition( $definition ) {
             $this->definition = $definition;
             return $this;
         }
@@ -55,10 +55,58 @@
             return $this->name;
         }
 
+
         /**
-         *
+         * @param array $parameters
+         * @return mixed|null|object
+         * @throws Exception
          */
-        public function resolve() {
+        public function resolve( array $parameters = [] ) {
+
+            $instance   = null;
+            $definition = $this->definition;
+
+            if( gettype( $definition ) === 'string' ) {
+
+                if( class_exists( $definition ) ) {
+
+                    $reflaction = new \ReflectionClass( $definition );
+
+                    try {
+                        $instance   = count( $parameters ) > 0
+                            ? $reflaction->newInstanceArgs( $parameters )
+                            : $reflaction->newInstance();
+                    } catch ( \ReflectionException $e ) {
+                        throw new Exception( $e->getMessage() );
+                    }
+
+                } else {
+                    throw new Exception( "Class not exists '{$definition}'" );
+                }
+
+            } else {
+
+                if( gettype( $definition ) === 'object' ) {
+
+                    if( $definition instanceOf \Closure ) {
+
+                        $instance   = call_user_func_array( $definition, $parameters );
+
+                    } else {
+                        $instance   = $definition;
+                    }
+
+                } else if( gettype( $definition ) === 'array' ) {
+                    // @TODO smart build here
+                    throw new Exception( 'No release yet...' );
+                }
+
+            }
+
+            if( $instance !== null )
+                $this->resolved = true;
+
+            return $instance;
 
         }
 
