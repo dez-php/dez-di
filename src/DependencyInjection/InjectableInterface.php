@@ -1,18 +1,18 @@
 <?php
 
-    namespace Dez\Di;
+    namespace Dez\DependencyInjection;
 
     /**
      * Interface InjectableInterface
-     * @package Dez\Di
+     * @package Dez\DependencyInjection
      */
     interface InjectableInterface {
 
         /**
-         * @param DiInterface $di
+         * @param ContainerInterface $dependencyInjector
          * @return boolean
          */
-        public function setDi( DiInterface $di );
+        public function setDi( ContainerInterface $dependencyInjector );
 
         /**
          * @return DiInterface

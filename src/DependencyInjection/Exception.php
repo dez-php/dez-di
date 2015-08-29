@@ -1,6 +1,6 @@
 <?php
 
-    namespace Dez\Di;
+    namespace Dez\DependencyInjection;
 
     class Exception extends \Exception {
 

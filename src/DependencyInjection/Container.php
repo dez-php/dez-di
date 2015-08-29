@@ -1,16 +1,12 @@
 <?php
 
-    namespace Dez;
-
-    use Dez\Di\DiInterface;
-    use Dez\Di\Exception;
-    use Dez\Di\Service;
+    namespace Dez\DependencyInjection;
 
     /**
-     * Class Di
+     * Class DependencyInjection
      * @package Dez
      */
-    class Di implements DiInterface {
+    class Container implements ContainerInterface {
 
         /**
          * @var array
@@ -59,7 +55,7 @@
         public function getNew( $name, array $parameters = [] ) {
 
             $service    = $this->getService( $name );
-            $instance   = $service->resolve( $parameters );
+            $instance   = $service->resolve( $parameters, $this );
 
             return $instance;
         }

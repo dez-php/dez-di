@@ -1,10 +1,10 @@
 <?php
 
-    namespace Dez\Di;
+    namespace Dez\DependencyInjection;
 
     /**
      * Class Service
-     * @package Dez\Di
+     * @package Dez\DependencyInjection
      */
     class Service implements ServiceInterface {
 
@@ -58,10 +58,11 @@
 
         /**
          * @param array $parameters
+         * @param ContainerInterface $di
          * @return mixed|null|object
          * @throws Exception
          */
-        public function resolve( array $parameters = [] ) {
+        public function resolve( array $parameters = [], ContainerInterface $di ) {
 
             $instance   = null;
             $definition = $this->definition;
@@ -105,6 +106,9 @@
 
             if( $instance !== null )
                 $this->resolved = true;
+
+            if( $instance instanceOf InjectableInterface )
+                $instance->setDi( $di );
 
             return $instance;
 

@@ -1,29 +1,29 @@
 <?php
 
-    namespace Dez\Di;
+    namespace Dez\DependencyInjection;
 
     /**
      * Class Injectable
-     * @package Dez\Di
+     * @package Dez\DependencyInjection
      */
     abstract class Injectable implements InjectableInterface {
 
         /**
-         * @var DiInterface
+         * @var ContainerInterface
          */
         protected $dependencyInjector;
 
         /**
-         * @param DiInterface $dependencyInjector
+         * @param ContainerInterface $dependencyInjector
          * @return $this
          */
-        public function setDi( DiInterface $dependencyInjector ) {
+        public function setDi( ContainerInterface $dependencyInjector ) {
             $this->dependencyInjector   = $dependencyInjector;
             return $this;
         }
 
         /**
-         * @return DiInterface
+         * @return ContainerInterface
          */
         public function getDi() {
             return $this->dependencyInjector;
@@ -36,7 +36,7 @@
          * @throws Exception
          */
         public function __get( $property ) {
-            if( ! is_object( $this->dependencyInjector ) || ! ( $this->dependencyInjector instanceOf DiInterface ) ) {
+            if( ! is_object( $this->dependencyInjector ) || ! ( $this->dependencyInjector instanceOf ContainerInterface ) ) {
                 throw new Exception( 'A dependency injection object is required' );
             }
 

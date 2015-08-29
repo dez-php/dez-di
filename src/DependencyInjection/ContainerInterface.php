@@ -1,12 +1,12 @@
 <?php
 
-    namespace Dez\Di;
+    namespace Dez\DependencyInjection;
 
     /**
      * Interface DiInterface
-     * @package Dez\Di
+     * @package Dez\DependencyInjection
      */
-    interface DiInterface extends \ArrayAccess, \IteratorAggregate, \Countable {
+    interface ContainerInterface extends \ArrayAccess, \IteratorAggregate, \Countable {
 
         /**
          * @param $name

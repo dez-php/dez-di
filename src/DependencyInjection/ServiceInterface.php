@@ -1,10 +1,10 @@
 <?php
 
-    namespace Dez\Di;
+    namespace Dez\DependencyInjection;
 
     /**
      * Interface ServiceInterface
-     * @package De\Di
+     * @package De\DependencyInjection
      */
     interface ServiceInterface {
 
@@ -24,9 +24,12 @@
          */
         public function getName();
 
+
         /**
+         * @param array $parameters
+         * @param ContainerInterface $d
          * @return mixed
          */
-        public function resolve();
+        public function resolve( array $parameters = [], ContainerInterface $d );
 
     }
