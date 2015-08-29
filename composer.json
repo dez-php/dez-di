@@ -1,5 +1,5 @@
 {
-  "name": "dez-php/dez-http",
+  "name": "dez-php/dez-di",
   "description": "DezPHP - Dependency injection",
   "keywords": ["php dependency injection","dependency injection", "dez-php dependency injection", "dez-di", "di"],
   "authors": [
