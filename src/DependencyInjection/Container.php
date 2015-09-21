@@ -19,6 +19,45 @@
         protected $instances    = [];
 
         /**
+         * @var static
+         */
+        static protected $di;
+
+        /**
+         * Constructor
+         */
+        public function __construct() {
+            if( ! static::getDi() ) {
+                static::setDi( $this );
+            }
+        }
+
+        /**
+         * @return static
+         */
+        static public function instance() {
+            if( ! static::$di || ! ( static::$di instanceof static ) ) {
+                static::setDi( new static() );
+            }
+            return static::$di;
+        }
+
+        /**
+         * @return mixed
+         */
+        public static function getDi() {
+            return self::$di;
+        }
+
+        /**
+         * @param mixed $di
+         * @return static
+         */
+        public static function setDi( $di )  {
+            self::$di = $di;
+        }
+
+        /**
          * @param $name
          * @param $definition
          * @return Service
